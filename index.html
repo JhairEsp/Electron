@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Menú lateral -->
+    <nav class="sidebar">
+        <h2>📊 Dashboard</h2>
+        <ul>
+            <li><a href="#" onclick="loadPage('home')">🏠 Home</a></li>
+            <li><a href="#" onclick="loadPage('estudios')">📚 Estudios</a></li>
+            <li><a href="#" onclick="loadPage('finanzas')">💰 Finanzas</a></li>
+            <li><a href="#" onclick="loadPage('proyectos')">🚀 Proyectos</a></li>
+            <li><a href="#" onclick="loadPage('trabajo')">💼 Trabajo</a></li>            
+        </ul>
+        <!-- El botón de tema se añadirá aquí mediante JavaScript -->
+    </nav>
+
+    <!-- Contenido de la página -->
+    <main class="content">
+        <iframe id="page-content" src="pages/home.html"></iframe>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

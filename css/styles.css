@@ -1,0 +1,301 @@
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --sidebar-bg: #f8fafc;
+    --sidebar-text: #1e293b;
+    --sidebar-hover: #e2e8f0;
+    --content-bg: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.05);
+    --border: #e2e8f0;
+  }
+  
+  /* Dark mode variables */
+  .dark {
+    --primary: #6366f1;
+    --primary-hover: #818cf8;
+    --sidebar-bg: #1e293b;
+    --sidebar-text: #f8fafc;
+    --sidebar-hover: #334155;
+    --content-bg: #0f172a;
+    --shadow: rgba(0, 0, 0, 0.2);
+    --border: #334155;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  body {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--content-bg);
+    color: var(--sidebar-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Sidebar Styles */
+  .sidebar {
+    width: 260px;
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 1.5rem;
+    border-right: 1px solid var(--border);
+    box-shadow: 2px 0 10px var(--shadow);
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    flex: 1;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .sidebar ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--sidebar-text);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  .sidebar ul li a:hover {
+    background-color: var(--sidebar-hover);
+    transform: translateX(5px);
+  }
+  
+  .sidebar ul li a.active {
+    background-color: var(--primary);
+    color: white;
+  }
+  
+  /* Main Content Styles */
+  .content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  #page-content {
+    width: 100%;
+    height: calc(100vh - 3rem);
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--content-bg);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 80px;
+      padding: 1rem 0.5rem;
+    }
+    
+    .sidebar h2 {
+      font-size: 1.2rem;
+      justify-content: center;
+    }
+    
+    .sidebar ul li a span {
+      display: none;
+    }
+    
+    .content {
+      margin-left: 80px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .sidebar {
+      width: 0;
+      padding: 0;
+      opacity: 0;
+      z-index: 50;
+    }
+    
+    .content {
+      margin-left: 0;
+    }
+    
+    /* Menu toggle button for mobile */
+    .menu-toggle {
+      display: block;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 100;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+    
+    .sidebar.open {
+      width: 260px;
+      padding: 1.5rem;
+      opacity: 1;
+    }
+  }
+  
+  /* Estilos para el botón de cambio de tema */
+  .theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 48px;
+    height: 24px;
+    border-radius: 24px;
+    background-color: var(--sidebar-bg);
+    border: 2px solid var(--primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px var(--shadow);
+    overflow: hidden;
+  }
+  
+  .theme-toggle::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: 1;
+  }
+  
+  .dark .theme-toggle::before {
+    transform: translateX(24px);
+  }
+  
+  .theme-toggle .icon {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4px;
+    z-index: 0;
+  }
+  
+  .theme-toggle .icon-sun,
+  .theme-toggle .icon-moon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sidebar-text);
+    transition: opacity 0.3s ease;
+  }
+  
+  .theme-toggle .icon-sun {
+    opacity: 1;
+  }
+  
+  .theme-toggle .icon-moon {
+    opacity: 0.5;
+  }
+  
+  .dark .theme-toggle .icon-sun {
+    opacity: 0.5;
+  }
+  
+  .dark .theme-toggle .icon-moon {
+    opacity: 1;
+  }
+  
+  /* Posicionamiento alternativo para el botón en la barra lateral */
+  .sidebar .theme-toggle-wrapper {
+    margin-top: auto;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .sidebar .theme-toggle {
+    position: relative;
+    top: auto;
+    right: auto;
+  }
+  
+  /* Animación adicional para el cambio de tema */
+  @keyframes ripple {
+    0% {
+      transform: scale(1);
+      opacity: 0.4;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  .theme-toggle.animate::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--primary);
+    border-radius: 24px;
+    opacity: 0;
+    animation: ripple 0.6s ease-out;
+    z-index: -1;
+  }
+  
+  /* Estilos adicionales para mejorar la transición entre temas */
+  .sidebar, 
+  .content, 
+  #page-content, 
+  .theme-toggle, 
+  .menu-toggle {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Mejoras para el modo oscuro */
+  .dark .sidebar {
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark #page-content {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Estilos para los iconos de emoji en los elementos del menú */
+  .sidebar ul li a {
+    gap: 0.75rem;
+  }

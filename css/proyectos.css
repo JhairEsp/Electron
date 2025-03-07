@@ -1,0 +1,332 @@
+/* Modern CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color: #e2e8f0;
+  background-color: #0f172a;
+  background-image: 
+    radial-gradient(at 10% 10%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 90% 90%, rgba(124, 58, 237, 0.1) 0px, transparent 50%);
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+/* Container for better organization */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Header Styles with Animation */
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+  color: #60a5fa;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: fadeIn 0.8s ease-in-out;
+  text-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
+  font-weight: 800;
+}
+
+h1 span {
+  display: inline-block;
+  animation: rocketBounce 3s ease-in-out infinite;
+}
+
+@keyframes rocketBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+p {
+  font-size: 1.2rem;
+  color: #94a3b8;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.8s ease-in-out 0.2s both;
+  max-width: 600px;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.8s ease-out 0.4s both;
+  border: 1px solid #1e293b;
+  background-color: #1e293b;
+  position: relative;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+thead {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  color: white;
+}
+
+th {
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+th:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+tbody tr {
+  background-color: #1e293b;
+  transition: all 0.3s ease;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #172033;
+}
+
+tbody tr:hover {
+  background-color: #2d3748;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+td {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #334155;
+}
+
+/* Status styling with badges */
+td:nth-child(3) {
+  font-weight: 600;
+}
+
+td:nth-child(3)[data-status="Completado"],
+td:nth-child(3):contains("Completado") {
+  position: relative;
+}
+
+td:nth-child(3)[data-status="Completado"]::before,
+td:nth-child(3):contains("Completado")::before {
+  content: "Completado";
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+td:nth-child(3)[data-status="En progreso"]::before,
+td:nth-child(3):contains("En progreso")::before {
+  content: "En progreso";
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+td:nth-child(3)[data-status="Pendiente"]::before,
+td:nth-child(3):contains("Pendiente")::before {
+  content: "Pendiente";
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+  
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  th, td {
+    padding: 0.75rem 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Add a nice loading animation for when data is being fetched */
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.loading {
+  animation: pulse 1.5s infinite;
+}
+
+/* Empty state styling */
+#tabla-proyectos:empty::after {
+  content: "No hay proyectos disponibles";
+  display: block;
+  text-align: center;
+  padding: 3rem;
+  color: #94a3b8;
+  font-style: italic;
+  background-color: #1e293b;
+}
+
+/* Button styles - beautiful add project button */
+button {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button position fix - move outside table */
+table + button {
+  margin-top: 2rem;
+  display: block;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.5s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5), 0 6px 16px rgba(37, 99, 235, 0.4);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* Add a container for better organization */
+.header-container {
+  margin-bottom: 2rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+/* Table wrapper for better styling */
+.table-container {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #1e293b;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations for rows when they appear */
+@keyframes fadeInRow {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+tbody tr {
+  animation: fadeInRow 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+tbody tr:nth-child(1) { animation-delay: 0.1s; }
+tbody tr:nth-child(2) { animation-delay: 0.2s; }
+tbody tr:nth-child(3) { animation-delay: 0.3s; }
+tbody tr:nth-child(4) { animation-delay: 0.4s; }
+tbody tr:nth-child(5) { animation-delay: 0.5s; }
